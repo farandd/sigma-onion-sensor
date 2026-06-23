@@ -22,7 +22,7 @@ def setup_model():
             print(f"Gagal mengunduh dari Drive: {e}. Pastikan file {MODEL_PATH} ada di server.")
     
     print(f"Memuat model {MODEL_PATH}...")
-    return load_model(MODEL_PATH)
+    return load_model(MODEL_PATH, compile=False)
 
 app = Flask(__name__)
 CORS(app)
