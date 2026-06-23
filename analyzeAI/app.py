@@ -4,12 +4,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+from tensorflow.keras.utils import custom_object_scope
 import numpy as np
 import io
 
-# Konfigurasi - Disesuaikan dengan file ov5_VGG19.h5 di foldermu
+# Konfigurasi - Menggunakan file model VGG19 sesuai yang ada di foldermu
 MODEL_PATH = 'ov5_VGG19.h5'
-# ID file dari link Google Drive (Gunakan ID yang valid jika file tidak di-push ke Git)
 DRIVE_FILE_ID = '1egEAMzYI39e4dVaWbjGBKN0K4aKhyzmm'
 
 def setup_model():
@@ -22,7 +22,14 @@ def setup_model():
             print(f"Gagal mengunduh dari Drive: {e}. Pastikan file {MODEL_PATH} ada di server.")
     
     print(f"Memuat model {MODEL_PATH}...")
-    return load_model(MODEL_PATH, compile=False)
+    
+    # PERBAIKAN: Membuka model dengan mengabaikan argumen 'quantization_config' dan menonaktifkan kompilasi training lama
+    try:
+        with custom_object_scope({'quantization_config': None}):
+            return load_model(MODEL_PATH, compile=False)
+    except Exception as e:
+        print(f"Gagal memuat model secara normal, mencoba fallback: {e}")
+        return load_model(MODEL_PATH, compile=False)
 
 app = Flask(__name__)
 CORS(app)
@@ -69,6 +76,6 @@ def predict():
         return jsonify({'error': f'Gagal memproses prediksi: {str(e)}'}), 500
 
 if __name__ == '__main__':
-    # PERBAIKAN: Menggunakan port dinamis dari environment Railway
+    # Menggunakan port dinamis dari environment Railway
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
