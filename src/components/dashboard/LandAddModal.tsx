@@ -142,26 +142,42 @@ export default function LandAddModal({ isOpen, onClose, onSuccess, systemType }:
                </div>
             </div>
 
-            <div className="bg-tertiary/10 rounded-[1.5rem] p-5 border border-tertiary/20 mt-2">
+             <div className="bg-tertiary/10 rounded-[1.5rem] p-5 border border-tertiary/20 mt-2">
                <div className="flex items-center gap-3 mb-4 text-tertiary font-bold text-xs uppercase tracking-tight">
                   <div className="w-8 h-8 bg-tertiary/20 rounded-lg flex items-center justify-center shrink-0 shadow-sm">
                     <Info className="w-5 h-5 text-tertiary" />
                   </div>
-                  <span>CARA COPY KOORDINAT:</span>
+                  <span>PANDUAN KOORDINAT:</span>
                </div>
-               <ul className="text-[10px] text-tertiary/80 leading-relaxed font-bold opacity-80 list-none space-y-1">
-                 <li>• Cari titik di Google Maps.</li>
-                 <li>• Klik Kanan (PC) / Tahan (HP).</li>
-                 <li>• Klik angka kordinat untuk Copy.</li>
-               </ul>
-               <a 
-                 href="https://www.google.com/maps" 
-                 target="_blank" 
-                 rel="noreferrer"
-                 className="mt-4 flex items-center justify-center gap-2 w-full py-3.5 bg-white border-2 border-tertiary/30 text-tertiary rounded-xl text-[11px] font-black hover:bg-tertiary hover:text-white transition-all shadow-md active:scale-95 uppercase"
-               >
-                 BUKA MAPS SEKARANG →
-               </a>
+               <div className="space-y-4">
+                 <div>
+                   <p className="text-xs font-bold text-tertiary mb-1 uppercase">💻 Lewat Komputer / Laptop:</p>
+                   <p className="text-xs text-tertiary/90 leading-relaxed">Klik kanan tepat di titik lahan Anda pada peta Google Maps, lalu klik angka koordinat yang muncul untuk otomatis menyalin.</p>
+                 </div>
+                 <div>
+                   <p className="text-xs font-bold text-tertiary mb-1 uppercase">📱 Lewat HP (Android / iPhone):</p>
+                   <p className="text-xs text-tertiary/90 leading-relaxed">Aplikasi Maps di HP sering kali sulit disalin. Gunakan alat bantu di bawah ini agar angka koordinat muncul dengan jelas dan mudah disalin.</p>
+                 </div>
+               </div>
+               
+               <div className="grid grid-cols-1 gap-2 mt-4">
+                 <a 
+                   href="https://www.google.com/maps" 
+                   target="_blank" 
+                   rel="noreferrer"
+                   className="flex items-center justify-center gap-2 w-full py-3.5 bg-white border-2 border-tertiary/30 text-tertiary rounded-xl text-[11px] font-black hover:bg-tertiary hover:text-white transition-all shadow-md active:scale-95 uppercase"
+                 >
+                   BUKA GOOGLE MAPS
+                 </a>
+                 <a 
+                   href="https://www.gps-coordinates.net/" 
+                   target="_blank" 
+                   rel="noreferrer"
+                   className="flex items-center justify-center gap-2 w-full py-3.5 bg-tertiary text-white rounded-xl text-[11px] font-black hover:bg-tertiary/90 transition-all shadow-md active:scale-95 uppercase"
+                 >
+                   BUKA ALAT PENCARI KOORDINAT
+                 </a>
+               </div>
             </div>
           </div>
         </div>
